@@ -621,5 +621,21 @@ def addreview(itemid):
         return redirect(url_for('userlogin')) 
 @app.route('/contact',methods=['GET','POST'])
 def contact():
-        return render_template('contact.html')             
+        return render_template('contact.html') 
+@app.route('/readreview/<itemid>')
+def readreview(itemid):
+    if session.get('user'):
+        try:
+            cursor=mytdb.cursor(buffered=True)
+            cursor.execute('select * from reviews where itemid=%s',[itemid])
+            item_data=cursor.fetchone()
+        except Exception as e:
+            print(e)
+            flash('No data found')
+            return redirect(url_for('description',itemid=itemid))
+        else:
+            return render_template('readreview.html',item_data=item_data)
+    else:
+        flash("please login")
+        return redirect(url_for('userlogin'))               
 app.run(debug=True,use_reloader=True)

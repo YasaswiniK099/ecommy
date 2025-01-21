@@ -1,0 +1,2 @@
+index=> pay url {{url_for('pay',itemid=i[0],name=i[1],price=i[3])}}
+cart.html=>pay url {{url_for('pay',itemid=i,name=items[i][0],price=items[i][1])}}

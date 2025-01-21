@@ -49,6 +49,8 @@
                     {% endif %}
                     <a href="#"><button
                             class="btn btn-danger">ADD CART</button></a>
+                    <a href="{{url_for('readreview',itemid=item_data[0])}}"><button
+                            class="btn btn-success">Read_Review</button></a>        
                     <a href="{{url_for('description',itemid=item_data[0])}}"><button
                             class="btn btn-danger">BACK</button></a>
                 </div>
